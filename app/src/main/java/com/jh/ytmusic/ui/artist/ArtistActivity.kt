@@ -1,11 +1,16 @@
 package com.jh.ytmusic.ui.artist
 
+import android.annotation.SuppressLint
 import android.graphics.Color
+import android.view.DragEvent
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.viewModels
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,6 +20,8 @@ import com.jh.ytmusic.base.BaseActivity
 import com.jh.ytmusic.databinding.ActivityArtistBinding
 import com.jh.ytmusic.setFullScreenLightStatusBar
 import com.jh.ytmusic.statusBarHeight
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class ArtistActivity: BaseActivity<ActivityArtistBinding, ArtistViewModel>() {
 
@@ -27,6 +34,7 @@ class ArtistActivity: BaseActivity<ActivityArtistBinding, ArtistViewModel>() {
     private val popularSongAdapter by lazy { PopularSongAdapter().also { it.submitList(viewModel.popularSongList) } }
     private val albumAdapter by lazy { AlbumAdapter().also { it.submitList(viewModel.albumList) } }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun initViewsAndEvents() {
 
         setFullScreenLightStatusBar()
@@ -59,6 +67,42 @@ class ArtistActivity: BaseActivity<ActivityArtistBinding, ArtistViewModel>() {
             }
             android.util.Log.i("asdf", "scrollY :: $scrollY")
         }
+        dataBinding.parentPlayer.setTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionStarted(motionLayout: MotionLayout?, startId: Int, endId: Int) {
+            }
+
+            override fun onTransitionChange(motionLayout: MotionLayout?, startId: Int, endId: Int, progress: Float) {
+//                dataBinding.parentMain.progress = if (progress * 1.2f >= 1f) 1f else progress * 1.2f
+                dataBinding.parentMain.progress = progress
+            }
+
+            override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+            }
+
+            override fun onTransitionTrigger(motionLayout: MotionLayout?, triggerId: Int, positive: Boolean, progress: Float) {
+            }
+
+        })
+//        dataBinding.parentPlayer.setOnTouchListener { v, event ->
+//            android.util.Log.i("asdf","TouchEvent :: ${event.action}")
+//            when (event.action) {
+//                MotionEvent.ACTION_MOVE -> {
+//                    dataBinding.parentMain.progress = dataBinding.parentPlayer.progress
+//                }
+//            }
+//            false
+//        }
+//        dataBinding.parentPlayer.setOnDragListener { v, event ->
+////            when (event.action) {
+////                DragEvent.ACTION_DRAG_STARTED
+////            }
+//            android.util.Log.i("asdf","DragEvent :: ${event.action}")
+//            true
+//        }
+//        lifecycleScope.launch {
+//            delay(1000)
+//            dataBinding.parentPlayer.progress = 1f
+//        }
 
     }
 }

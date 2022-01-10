@@ -9,20 +9,22 @@
             type="com.jh.ytmusic.ui.artist.ArtistViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/parent_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/activity_artist_xml_parent_main_scene">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/sv"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:overScrollMode="never"
             android:background="@android:color/black"
-            app:layout_constraintTop_toTopOf="parent"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toTopOf="@id/nav"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.motion.widget.MotionLayout
                 android:id="@+id/parent"
@@ -90,40 +92,40 @@
                     android:id="@+id/btn_shuffle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/white"
                     android:paddingVertical="12dp"
                     android:text="셔플"
                     android:textColor="@color/black"
-                    android:backgroundTint="@color/white"
                     app:icon="@drawable/outline_shuffle_24"
                     app:iconGravity="textStart"
                     app:iconPadding="5dp"
                     app:iconTint="@color/black"
+                    app:layout_constraintEnd_toStartOf="@id/btn_station"
                     app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintTop_toBottomOf="@id/iv_artist"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/btn_station"/>
+                    app:layout_constraintTop_toBottomOf="@id/iv_artist" />
 
                 <Button
                     android:id="@+id/btn_station"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:backgroundTint="@color/black"
                     android:paddingVertical="12dp"
                     android:text="뮤직 스테이션"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/black"
                     app:icon="@drawable/outline_surround_sound_24"
                     app:iconGravity="textStart"
                     app:iconPadding="5dp"
-                    app:strokeColor="@color/white"
-                    app:strokeWidth="1dp"
-                    app:layout_constraintTop_toTopOf="@id/btn_shuffle"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/btn_shuffle"/>
+                    app:layout_constraintStart_toEndOf="@id/btn_shuffle"
+                    app:layout_constraintTop_toTopOf="@id/btn_shuffle"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
 
                 <TextView
                     android:id="@+id/tv_popular_song"
@@ -132,12 +134,11 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
                     android:text="인기곡"
+                    android:textColor="@color/white"
                     android:textSize="30dp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/btn_shuffle"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/btn_shuffle" />
 
                 <TextView
                     android:id="@+id/tv_popular_song_show_all"
@@ -145,24 +146,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
                     android:text="모두보기"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="14dp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/darker_gray"
-                    app:layout_constraintTop_toTopOf="@id/tv_popular_song"
                     app:layout_constraintBottom_toBottomOf="@id/tv_popular_song"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_popular_song" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_popular_song"
                     android:layout_width="0dp"
                     android:layout_height="350dp"
-                    android:overScrollMode="never"
                     android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_popular_song"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_song"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_popular_song"
+                    tools:listitem="@layout/item_song" />
 
                 <TextView
                     android:id="@+id/tv_album"
@@ -171,12 +172,11 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
                     android:text="앨범"
+                    android:textColor="@color/white"
                     android:textSize="30dp"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/rv_popular_song"
                     app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/rv_popular_song" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_album"
@@ -185,10 +185,10 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="15dp"
                     android:overScrollMode="never"
-                    app:layout_constraintTop_toBottomOf="@id/tv_album"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_album" />
 
             </androidx.constraintlayout.motion.widget.MotionLayout>
 
@@ -199,36 +199,157 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
+
             <ImageView
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/outline_arrow_back_24"/>
+                android:src="@drawable/outline_arrow_back_24" />
+
             <TextView
                 android:id="@+id/tv_tb_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
                 android:paddingStart="10dp"
                 android:text="지코(ZICO)"
                 android:textColor="@color/white"
+                android:textSize="20dp"
                 android:textStyle="bold"
-                android:textSize="20dp"/>
+                android:visibility="invisible" />
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:menu="@menu/bottom_nav_menu"
             android:background="@color/bottom_gray"
             app:itemTextColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/parent_player"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/bottom_gray"
+            app:layoutDescription="@xml/activity_artist_xml_parent_player_scene">
+
+            <ImageView
+                android:id="@+id/iv_expand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/outline_expand_more_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/outline_more_vert_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_bad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:src="@drawable/outline_thumb_down_24"
+                app:layout_constraintBottom_toBottomOf="@id/tv_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+            <ImageView
+                android:id="@+id/iv_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="45dp"
+                android:src="@drawable/outline_thumb_up_24"
+                app:layout_constraintBottom_toBottomOf="@id/tv_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+            <ImageView
+                android:id="@+id/iv_jacket"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:layout_marginTop="100dp"
+                android:src="@mipmap/ic_launcher_round"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="title"
+                android:textColor="@color/white"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/iv_good"
+                app:layout_constraintStart_toEndOf="@id/iv_bad"
+                app:layout_constraintTop_toBottomOf="@id/iv_jacket" />
+
+            <TextView
+                android:id="@+id/tv_player_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Artist"
+                android:textColor="@color/white_alpha"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_player_artist" />
+
+            <TextView
+                android:id="@+id/tv_time_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="0:00"
+                android:textColor="@color/white_alpha"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@id/seekbar"
+                app:layout_constraintTop_toBottomOf="@id/seekbar" />
+
+            <TextView
+                android:id="@+id/tv_time_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="3:33"
+                android:textColor="@color/white_alpha"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="@id/seekbar"
+                app:layout_constraintTop_toBottomOf="@id/seekbar" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
